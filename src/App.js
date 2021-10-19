@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useImmer } from "./use-immer";
 function App() {
+  let [state, setState] = useImmer([1, 2, 3]);
+  console.log(state, "1111");
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        onClick={() => {
+          setState((draft) => {
+            draft.push(1);
+          });
+        }}
+      >
+        加1
+      </button>
+      {state.map((item) => {
+        return <div>{item}</div>;
+      })}
     </div>
   );
 }
